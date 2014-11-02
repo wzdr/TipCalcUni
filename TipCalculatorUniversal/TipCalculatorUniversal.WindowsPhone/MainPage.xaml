@@ -23,7 +23,7 @@
         <TextBlock Margin="20,0,20,0"
                    Grid.Row="1"
                    Style="{StaticResource TitleTextBlockStyle}" 
-                   FontSize="48">
+                   FontSize="36">
             Enter the bill amount
         </TextBlock>
 
@@ -35,7 +35,7 @@
                        TextWrapping="Wrap"
                        VerticalAlignment="Top"
                        InputScope="Number"
-                       Width="100"
+                       Width="150"
                        FontSize="24"
                        LostFocus="amountTextBlock_LostFocus"
                        TextChanged="billAmountTextBox_TextChanged"

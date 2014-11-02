@@ -22,9 +22,43 @@ namespace TipCalculatorUniversal
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private Tip tip;
+
         public MainPage()
         {
             this.InitializeComponent();
+
+            tip = new Tip();
+        }
+
+        private void amountTextBlock_LostFocus(object sender, RoutedEventArgs e)
+        {
+            billAmountTextBox.Text = tip.BillAmount;
+        }
+
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            performCalculation();
+        }
+
+        private void billAmountTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            performCalculation();
+        }
+
+        private void amountTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            billAmountTextBox.Text = "";
+        }
+
+        private void performCalculation()
+        {
+            var selectedRadio = myStackPanel.Children.OfType<RadioButton>().FirstOrDefault(r => r.IsChecked == true);
+
+            tip.CalculateTip(billAmountTextBox.Text, double.Parse(selectedRadio.Tag.ToString()));
+
+            amountToTipTextBlock.Text = tip.TipAmount;
+            totalTextBlock.Text = tip.TotalAmount;
         }
     }
 }
